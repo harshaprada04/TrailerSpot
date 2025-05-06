@@ -5,7 +5,6 @@ import HomePageListItem from "./HomePageListItem";
 
 function MyList() {
   const listContext = useContext(Context);
-  console.log(listContext.favorite);
 
   return (
     <div className="w-full h-full">
