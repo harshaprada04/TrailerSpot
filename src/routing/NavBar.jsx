@@ -65,7 +65,7 @@ ${location.pathname === "/search" && "bg-white" }
             `}
           >
             <img
-              src="../src/assets/search.png"
+              src="/assets/search.png"
               className={`w-5 h-5 filter brightness-0 hover:invert-0 sepia hue-rotate-180   ${
                 location.pathname === "/search" ? "invert-0" : "invert"
               }`}

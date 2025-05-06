@@ -8,7 +8,7 @@ const NoData = (props) => {
     <div className="w-full h-full text-white p-4 flex items-center justify-center">
       <div className="bg-gray-800 rounded-lg flex flex-col items-center justify-center p-6 shadow-lg">
         <img
-          src="../src/assets/noDataFound.png"
+          src= "/assets/noDataFound.png"
           alt="No video"
           className="w-24 h-24 mb-4 filter invert"
         />

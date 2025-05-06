@@ -66,7 +66,7 @@ function BannerSlider(props) {
             onClick={navigateToVideo}
             className="bg-white w-8 h-8 items-center flex justify-center rounded-full cursor-pointer hover:scale-120 transition-transform duration-300 ease-in-out"
           >
-            <img src="../src/assets/play-video.png" className="w-6 h-6" />
+            <img src="/assets/play-video.png" className="w-6 h-6" />
           </div>
           <div
             onClick={(e) => clickHandler( e)}
@@ -75,8 +75,8 @@ function BannerSlider(props) {
             <img
               src={
                 listContext.isInList(movieData.id)
-                  ? "../src/assets/cross.png"
-                  : "../src/assets/add.png"
+                  ? "/assets/cross.png"
+                  : "/assets/add.png"
               }
               className="w-6 h-6"
             />
