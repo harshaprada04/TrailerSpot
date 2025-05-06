@@ -1,0 +1,12 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <rect width="512" height="512" rx="96" fill="#1E1E2F"></rect>
+  <rect x="96" y="128" width="320" height="256" rx="24" fill="#2D2D44"></rect>
+  <circle cx="160" cy="192" r="12" fill="#F9F871"></circle>
+  <circle cx="160" cy="256" r="12" fill="#F9F871"></circle>
+  <circle cx="160" cy="320" r="12" fill="#F9F871"></circle>
+  <circle cx="352" cy="192" r="12" fill="#F9F871"></circle>
+  <circle cx="352" cy="256" r="12" fill="#F9F871"></circle>
+  <circle cx="352" cy="320" r="12" fill="#F9F871"></circle>
+  <polygon points="220,180 300,256 220,332" fill="#FFFFFF"></polygon>
+  <text x="50%" y="470" font-family="Verdana" font-size="32" fill="#FFFFFF" text-anchor="middle">TrailerSpot</text>
+</svg>
