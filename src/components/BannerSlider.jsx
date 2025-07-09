@@ -11,7 +11,7 @@ function BannerSlider(props) {
     e.stopPropagation()
     const inList = listContext.isInList(movieData.id);
     if (inList) {
-      listContext.removeListHandler(movieData.id);
+      listContext.removeListHandler( movieData.id);
     } else {
       listContext.listHandler({
         image: movieData.backdrop_path

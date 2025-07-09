@@ -8,7 +8,7 @@ function MyList() {
 
   return (
     <div className="w-full h-full">
-      {listContext.listSize === 0 ? (
+      {listContext.favorite?.length === 0 ? (
         <div className="h-screen">
         <NoData
           header="No items available"

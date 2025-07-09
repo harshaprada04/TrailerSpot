@@ -8,7 +8,7 @@ function Card(props) {
   const navigate = useNavigate();
   function clickHandler() {
     if (inList) {
-      listContext.removeListHandler(props.id);
+      listContext.removeListHandler( props.id);
     } else {
       listContext.listHandler({
         image: props.image,
