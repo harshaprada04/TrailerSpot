@@ -20,24 +20,26 @@ export function ContextProvider(props) {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    getFavouriteList();
-}, []);
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (isLoggedIn) {
+      getFavouriteList();
+    }
+  }, []);
 
   function showHandler() {
     setShowSidebar(!showSidebar);
   }
 
   async function removeListHandler(listId) {
-
     try {
-       const loginToken = localStorage.getItem("accessToken");
+      const loginToken = localStorage.getItem("accessToken");
       const res = await fetch(
         `https://trailer-spot.onrender.com/api/v1/users/favourites/${listId}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-              token: loginToken || "",
+            token: loginToken || "",
           },
         }
       );
@@ -66,52 +68,50 @@ export function ContextProvider(props) {
   }
 
   async function getFavouriteList() {
-     const loginToken = localStorage.getItem("accessToken");
-  try {
-    const res = await fetch(
-      `https://trailer-spot.onrender.com/api/v1/users/favouritesList`,
-      {
-        method: "GET",
-        headers: {
-          token: loginToken,
-        },
+    const loginToken = localStorage.getItem("accessToken");
+    try {
+      const res = await fetch(
+        `https://trailer-spot.onrender.com/api/v1/users/favouritesList`,
+        {
+          method: "GET",
+          headers: {
+            token: loginToken,
+          },
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.status === "success" && data.data.favourites) {
+        setFavorite(data.data.favourites);
+      } else {
+        toast.error(data.message || "Failed to load favourites");
       }
-    );
-
-    const data = await res.json();
-
-    if (data.status === "success" && data.data.favourites) {
-      setFavorite(data.data.favourites); 
-    } else {
-      toast.error(data.message || "Failed to load favourites");
+    } catch (error) {
+      toast.error("Something went wrong while fetching favourites");
     }
-  } catch (error) {
-    toast.error("Something went wrong while fetching favourites");
   }
-}
 
-
- 
   async function listHandler(myList) {
     const transformedData = {
-  id: myList.id?.toString(),
-  original_title: myList.original_title || myList.name,
-  name: myList.name || myList.original_title,
-  overview: myList.overview || "",
-  vote_average: myList.vote_average?.toString() || "0",
-  isOriginal: false, // default or set dynamically if available
-  image: myList.image || "",
-};
+      id: myList.id?.toString(),
+      original_title: myList.original_title || myList.name,
+      name: myList.name || myList.original_title,
+      overview: myList.overview || "",
+      vote_average: myList.vote_average?.toString() || "0",
+      isOriginal: false, // default or set dynamically if available
+      image: myList.image || "",
+    };
 
     try {
-       const loginToken = localStorage.getItem("accessToken");
+      const loginToken = localStorage.getItem("accessToken");
       const res = await fetch(
         `https://trailer-spot.onrender.com/api/v1/users/favourites`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-              token: loginToken || "",
+            token: loginToken || "",
           },
           body: JSON.stringify(transformedData),
         }
@@ -120,7 +120,7 @@ export function ContextProvider(props) {
       const data = await res.json();
 
       if (data.status === "success") {
-        getFavouriteList()
+        getFavouriteList();
         toast.success(data.message || "Added to favourites!");
       } else {
         toast.error(data.message || "Something went wrong!");
@@ -141,12 +141,10 @@ export function ContextProvider(props) {
     userData: userData,
     setUserData: setUserData,
     resetData: resetData,
-    getFavouriteList:getFavouriteList
+    getFavouriteList: getFavouriteList,
   };
 
-  return (
-    <Context.Provider value={context}>{props.children}</Context.Provider>
-  );
+  return <Context.Provider value={context}>{props.children}</Context.Provider>;
 }
 
 export default Context;
